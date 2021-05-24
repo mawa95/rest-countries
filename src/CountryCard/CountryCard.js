@@ -17,9 +17,7 @@ const Card = styled.li`
 `;
 function CountryCard(props) {
   return (
-    <>
-      <Router>
-        <Link to="/country">
+        <Link to={`country/${props.name}`}>
           <Card>
             <FlagImage src={props.flag}></FlagImage>
             <div>
@@ -30,14 +28,6 @@ function CountryCard(props) {
             </div>
           </Card>
         </Link>
-        <Switch>
-        <Route path="/country">
-          <h2>nowa karta kraju</h2>
-        </Route>
-        </Switch>
-      </Router>
-     
-    </>
   );
 }
 

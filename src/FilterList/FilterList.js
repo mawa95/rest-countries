@@ -11,8 +11,8 @@ class FilterList extends React.Component {
   }
   render() {
     return (
-      <select name='regions' id='regions' onChange={this.handleChange}>
-        <option>Filter by Region</option>
+      <select name='regions' id='regions' onChange={this.handleChange} defaultValue={this.props.filteredRegion}>
+        <option value="all">All</option>
         <option value='Africa'>Africa</option>
         <option value='Americas'>Americas</option>
         <option value='Asia'>Asia</option>

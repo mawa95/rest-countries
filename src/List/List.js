@@ -20,7 +20,7 @@ const CountryList = styled.ul`
 class List extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { region: "" };
+    this.state = { region: "all" };
     this.handleFilterList = this.handleFilterList.bind(this); //this wskazuje na komponent
   }
 
@@ -32,34 +32,24 @@ class List extends React.Component {
   render() {
     const filteredRegion = this.state.region;
     let cards;
-    cards = this.props.countriesData.map(country => {
+    //fiter
+    cards = this.props.countriesData.filter(country => 
 
-    if (country.region === filteredRegion) {
-        return <CountryCard
-          key={country.numericCode}
-          flag={country.flag}
-          name={country.name}
-          region={country.region}
-          population={country.population}
-          capital={country.capital}
-      />;
-    } 
-      // return   <CountryCard
-      //   key={country.numericCode}
-      //   flag={country.flag}
-      //   name={country.name}
-      //   region={country.region}
-      //   population={country.population}
-      //   capital={country.capital}
-      //   />
-
-     
-    });
+    country.region === filteredRegion || filteredRegion === "all").map(country => 
+      <CountryCard
+      key={country.numericCode}
+      flag={country.flag}
+      name={country.name}
+      region={country.region}
+      population={country.population}
+      capital={country.capital}
+      />
+      )
     console.log(cards)
     return (
       <div>
         <Search></Search>
-        <FilterList filterByRegion={this.handleFilterList}>
+        <FilterList filterByRegion={this.handleFilterList} filteredRegion={filteredRegion}>
         </FilterList>
 
         <CountryList>{cards}</CountryList>
