@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import styled from "styled-components";
 import "./App.css";
 import List from "./List/List";
+import CountryPage from "./CountryPage/CountryPage";
 
 const CountryInfoWrapper = styled.section`
   background: hsl(0, 0%, 98%);
@@ -40,18 +41,15 @@ class App extends React.Component {
 
     return (
       <Router>
-        
-
         <Switch>
-        <Route path='/country/:name'>
-            <h1>podstrona</h1>
+          <Route path='/country/:name'>
+            <CountryPage countriesData={countries}></CountryPage>
           </Route>
           <Route path='/'>
             <CountryInfoWrapper>
               <List countriesData={countries} />
             </CountryInfoWrapper>
           </Route>
-          
         </Switch>
       </Router>
     );
@@ -59,3 +57,5 @@ class App extends React.Component {
 }
 
 export default App;
+//https://reactrouter.com/web/example/url-params
+//https://reactrouter.com/web/api/withRouter

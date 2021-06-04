@@ -22,7 +22,7 @@ function CountryCard(props) {
             <FlagImage src={props.flag}></FlagImage>
             <div>
               <h1>{props.name}</h1>
-              <p>Population: {props.population}</p>
+              <p>Population: {new Intl.NumberFormat().format(props.population)}</p>
               <p>Region: {props.region}</p>
               <p>Capital: {props.capital}</p>
             </div>
