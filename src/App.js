@@ -14,7 +14,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       loading: false,
-      countries: []
+      countries: null
     };
   }
 

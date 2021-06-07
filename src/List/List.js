@@ -38,22 +38,33 @@ class List extends React.Component {
   render() {
     const filteredRegion = this.state.region;
     const searchCountry = this.state.searchCountry;
-    let cards;
-    //fiter
-    cards = this.props.countriesData
-      .filter(
-        country => country.region === filteredRegion || filteredRegion === "all"
-      )
-      .map(country => (
-        <CountryCard
-          key={country.numericCode}
-          flag={country.flag}
-          name={country.name}
-          region={country.region}
-          population={country.population}
-          capital={country.capital}
-        />
-      ));
+    //tutaj funkcje filterByRegion
+    //filterAndMapCountries
+    const cards = this.props.countriesData
+      ? this.props.countriesData
+          .filter(countryElem => {
+            let isInFilteredRegion =
+              countryElem.region === filteredRegion || filteredRegion === "all";
+            let isInSearched =
+              countryElem.name
+                .toLowerCase()
+                .includes(this.state.searchCountry) ||
+              this.state.searchCountry === "";
+
+            let result = isInFilteredRegion && isInSearched;
+            return result;
+          })
+          .map(country => (
+            <CountryCard
+              key={country.numericCode}
+              flag={country.flag}
+              name={country.name}
+              region={country.region}
+              population={country.population}
+              capital={country.capital}
+            />
+          ))
+      : null;
     return (
       <div>
         <Search

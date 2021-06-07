@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import styled from "styled-components";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const FlagImage = styled.img`
   width: 90vw;
   max-width: 300px;
@@ -18,10 +19,11 @@ class CountryPage extends React.Component {
   };
 
   render() {
-    console.log(this.props.countriesData)
+    if (this.props.countriesData === null){
+     return <h1>loading</h1>
+    }
     const { match, location, history } = this.props;
     const data = this.props.countriesData.find(item => {
-      console.log(item, match)
       return item.name === match.params.name;
     });
    
@@ -31,6 +33,7 @@ class CountryPage extends React.Component {
       });
     });
     const result = { ...data, borders: mappedBorders };
+   
 
     return (
       <>
@@ -49,7 +52,9 @@ class CountryPage extends React.Component {
           <p>
             Borders:
             {result.borders.map(border => (
-              <button key={border.alpha3Code}>{border.name}</button>
+              <Link to={`/country/${border.name}`}>
+                <button key={border.alpha3Code}>{border.name}</button>
+              </Link>
             ))}
           </p>
         </div>
